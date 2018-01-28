@@ -5,25 +5,38 @@
 
 {% block main %}
 
-    {% if user.is_authenticated %}
-        <p>Ola {{user.username }} </p>
-        <a href="{% url 'logout' %}">Sair</a>
-    {% endif %}
+    <div class="row">
+        <div class="col">
 
-    <ul>
-        {% for person in persons %}
+        </div>
 
-            <li>
-                <a href="{% url 'persons_update' person.id %}">{{ person.first_name }}</a>
-                <a href="{% url 'persons_delete' person.id %}" class="btn btn-danger">Deletar</a>
-            </li>
+        <div class="col-6">
+            <ul class="list-group">
+                {% for person in persons %}
+                    <li class="list-group-item">
+                        <a href="{% url 'persons_update' person.id %}">{{ person.first_name }}</a>
+                        <a href="{% url 'persons_delete' person.id %}" class="testesss">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </li>
 
-        {% endfor %}
-    </ul>
+                {% endfor %}
+            </ul>
 
-    <br>
+            <br>
 
-    <a href="{% url 'person_new' %}" class="btn btn-primary"> Novo cliente</a>
+            <a href="{% url 'person_new' %}" class="btn btn-primary"> Novo cliente</a>
+
+        </div>
+
+        <div class="col">
+            {% if user.is_authenticated %}
+                <p>Ola {{user.username }} <a href="{% url 'logout' %}"><span class="badge badge-dark">Sair</span>
+</a></p>
+
+            {% endif %}
+        </div>
+    </div>
 
 
 {% endblock %}
