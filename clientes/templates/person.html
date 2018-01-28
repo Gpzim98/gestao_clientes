@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    {% if user.is_authenticated %}
+        <p>Ola {{user.username }} </p>
+        <a href="{% url 'logout' %}">Sair</a>
+    {% endif %}
+
+    <ul>
+        {% for person in persons %}
+
+            <li>
+                <a href="{% url 'persons_update' person.id %}">{{ person.first_name }}</a>
+                <a href="{% url 'persons_delete' person.id %}">Deletar</a>
+            </li>
+
+        {% endfor %}
+    </ul>
+
+    <br>
+
+    <a href="{% url 'person_new' %}"> Novo cliente</a>
+</body>
+</html>
