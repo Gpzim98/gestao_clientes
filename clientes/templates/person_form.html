@@ -4,7 +4,7 @@
 {% block title %} Administracao {% endblock %}
 
 {% block main %}
-
+    <h3>Novo cliente</h3>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|bootstrap }}

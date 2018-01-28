@@ -8,14 +8,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'stick-footer.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
 
     <div class="container">
-        {% block main %}
-        {% endblock %}
+        <div class="jumbotron">
+            {% block main %}
+            {% endblock %}
+        </div>
     </div>
+
+    {% block footer %}
+    {% endblock %}
 
 </body>
 </html>
