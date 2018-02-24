@@ -15,6 +15,8 @@
             <h1>Seja bem vindo</h1>
         </div>
 
+        {{ result }}
+
         <div class="col-sm">
             {% if user.is_authenticated %}
                 <p>Ola {{ user.username }}</p>
