@@ -4,6 +4,7 @@ from .models import Person
 from .forms import PersonForm
 
 
+
 @login_required
 def persons_list(request):
     persons = Person.objects.all()
