@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load filters %}
 
 {% block title %} Administracao {% endblock %}
 
@@ -21,6 +21,8 @@
                         </a>
                     </li>
 
+                {% empty %}
+                    <li>Desculpe, nao existem clientes cadastrados</li>
                 {% endfor %}
             </ul>
 
@@ -37,18 +39,26 @@
                         <span class="badge badge-dark">Sair</span>
                     </a>
                 </p>
-
             {% endif %}
         </div>
     </div>
 
+{% filter force_escape|lower %}
+    This text will be HTML-escaped, and will appear in all lowercase.
+{% endfilter %}
+
+{% if persons|length >= 2 %}
+   You have lots of messages today!
+{% endif %}
+
+{% now "d F Y H:i" %}
+
+{{ footer_message|my_filter }}
+
+{{ 123.3445|arredonda:2 }}
 
 {% endblock %}
 
 {% block footer %}
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Desenvolvimento web com Django 2.x</span>
-      </div>
-    </footer>
+    {% include 'footer.html' with minha_var=footer_message %}
 {% endblock %}

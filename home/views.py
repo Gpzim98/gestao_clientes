@@ -10,7 +10,7 @@ def calcular(v1, v2):
 
 
 def home(request):
-#    import pdb; pdb.set_trace()
+    #    import pdb; pdb.set_trace()
     value1 = 10
     value2 = 20
     res = calcular(value1, value2)
