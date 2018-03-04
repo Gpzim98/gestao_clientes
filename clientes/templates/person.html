@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load filters %}
 
 {% block title %} Administracao {% endblock %}
 
@@ -15,7 +14,7 @@
             <ul class="list-group">
                 {% for person in persons %}
                     <li class="list-group-item">
-                        <a href="{% url 'persons_update' person.id %}">{{ person.first_name }}</a>
+                        <a href="{% url 'persons_update' person.id %}">{{ person.nome_completo|title }}</a>
                         <a href="{% url 'persons_delete' person.id %}" class="trash-item">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                         </a>
@@ -43,22 +42,12 @@
         </div>
     </div>
 
-{% filter force_escape|lower %}
-    This text will be HTML-escaped, and will appear in all lowercase.
-{% endfilter %}
-
-{% if persons|length >= 2 %}
-   You have lots of messages today!
+{% if persons|length >= 20 %}
+   Voce ja tem mais que 20 clientes
 {% endif %}
-
-{% now "d F Y H:i" %}
-
-{{ footer_message|my_filter }}
-
-{{ 123.3445|arredonda:2 }}
 
 {% endblock %}
 
 {% block footer %}
-    {% include 'footer.html' with minha_var=footer_message %}
+    {% include 'footer.html' %}
 {% endblock %}
