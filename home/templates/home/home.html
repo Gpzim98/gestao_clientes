@@ -20,7 +20,9 @@
         <div class="col-sm">
             {% if user.is_authenticated %}
                 <p>Ola {{ user.username }}</p>
-                <a href="{% url 'logout' %}">Sair</a>
+                <a href="{% url 'logout' %}">Sair</a><br>
+                <a href="{% url 'password_change' %}">Alterar senha</a>
+
             {% else %}
                 <a href="{% url 'login' %}" class="btn btn-info">Entrar</a>
             {% endif %}
