@@ -5,6 +5,7 @@
 
 {% block main %}
     <h3>Novo cliente</h3>
+    <p> {{ request.session.message }}</p>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|bootstrap }}
