@@ -27,21 +27,39 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['gestao-clientes2.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['gestao-clientes2.herokuapp.com', 'localhost', '127.0.0.1']
 
+INTERNAL_IPS = ['127.0.0.1']
+
+ADMINS = [('Gregory', 'django@gregorypacheco.com.br'),]
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrapform',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.google',
+
     'clientes',
     'home',
+    'vendas',
+    'produtos',
+    'debug_toolbar',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,6 +69,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'mymiddlewares.MetaData.MetaData',
 ]
 
 ROOT_URLCONF = 'gestao_clientes.urls'
@@ -73,6 +93,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'gestao_clientes.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -105,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -134,6 +158,8 @@ STATICFILES_DIRS = [
     'statics',
 ]
 
+# STATIC_URL = '/static/'
+
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'gestao-clientes'
@@ -146,3 +172,9 @@ AWS_LOCATION = 'static'
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+EMAIL_HOST = 'mail.gregorypacheco.com.br'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'django@gregorypacheco.com.br'
+EMAIL_HOST_PASSWORD = 'django2018'
+EMAIL_USE_TLS = False
