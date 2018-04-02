@@ -173,8 +173,8 @@ STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-EMAIL_HOST = 'mail.gregorypacheco.com.br'
+EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'django@gregorypacheco.com.br'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = 'django2018'
 EMAIL_USE_TLS = False
