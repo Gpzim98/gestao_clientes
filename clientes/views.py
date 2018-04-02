@@ -41,6 +41,7 @@ def persons_new(request):
 
 @login_required
 def persons_update(request, id):
+    1/0
     person = get_object_or_404(Person, pk=id)
     form = PersonForm(request.POST or None, request.FILES or None, instance=person)
 

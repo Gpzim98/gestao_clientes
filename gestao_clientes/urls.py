@@ -22,8 +22,6 @@ from home import urls as home_urls
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
-from django.contrib.auth import urls
-
 
 urlpatterns = [
     path('', include(home_urls)),

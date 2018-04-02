@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['gestao-clientes2.herokuapp.com', 'localhost', '127.0.0.1']
 
 INTERNAL_IPS = ['127.0.0.1']
 
+ADMINS = [('Gregory', 'django@gregorypacheco.com.br'),]
 # Application definition
 
 INSTALLED_APPS = [
