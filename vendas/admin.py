@@ -13,7 +13,7 @@ class VendaAdmin(admin.ModelAdmin):
     readonly_fields = ('valor',)
     autocomplete_fields = ("pessoa",)
     list_filter = ('pessoa__doc', 'desconto')
-    list_display = ('id', 'pessoa', 'nfe_emitida', 'valor')
+    list_display = ('id', 'numero', 'pessoa', 'nfe_emitida', 'valor')
     search_fields = ('id', 'pessoa__first_name', 'pessoa__doc__num_doc')
     actions = [nfe_emitida, nfe_nao_emitida]
     inlines = [ItemPedidoInline]

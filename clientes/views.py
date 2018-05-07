@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.forms import model_to_dict
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -109,7 +110,10 @@ class PersonDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     permission_required = ('clientes.deletar_clientes',)
 
     model = Person
-    success_url = reverse_lazy('person_list_cbv')
+    # success_url = reverse_lazy('person_list_cbv')
+
+    def get_success_url(self):
+        return reverse_lazy('person_list_cbv')
 
 
 class ProdutoBulk(View):
@@ -124,3 +128,41 @@ class ProdutoBulk(View):
         Produto.objects.bulk_create(list_produtos)
 
         return HttpResponse('Funcionou')
+
+
+def api(request):
+    a = {'nome': 'Gregory', 'idade': 29, 'salario': 500}
+    mensagem = {'mensagem': 'erro xyz'}
+    lista = [1, 2, 3]
+
+    produto = Produto.objects.last()
+
+    b = model_to_dict(produto)
+
+    l = []
+
+    produtos = Produto.objects.all()
+
+    for produto in produtos:
+        l.append(model_to_dict(produto))
+
+    return JsonResponse(l, status=200, safe=False)
+
+
+class APICBV(View):
+    def get(self, request):
+        data = {'nome': 'Gregory'}
+
+        produto = Produto.objects.last()
+        b = model_to_dict(produto)
+
+        l = []
+        produtos = Produto.objects.all()
+
+        for produto in produtos:
+            l.append(model_to_dict(produto))
+
+        return JsonResponse(l, safe=False)
+
+    def post(self):
+        pass

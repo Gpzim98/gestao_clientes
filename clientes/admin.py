@@ -4,7 +4,7 @@ from .models import Person, Documento
 
 class PersonAdmin(admin.ModelAdmin):
     fieldsets = (
-        ('Dados pessoais', {'fields': ('first_name', 'last_name', 'doc')}),
+        ('Dados pessoais', {'fields': ('first_name', 'last_name', 'doc', 'telefone')}),
         ('Dados complementares', {
             'classes': ('collapse',),
             'fields': ('age', 'salary', 'photo')
