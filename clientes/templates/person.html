@@ -33,7 +33,7 @@
 
         <div class="col">
             {% if user.is_authenticated %}
-                <p>{{ request.session.message }}
+                <p>{{ request.session.app_message }}
                     <a href="{% url 'logout' %}">
                         <span class="badge badge-dark">Sair</span>
                     </a>

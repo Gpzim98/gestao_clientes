@@ -19,6 +19,7 @@ def home(request):
 
 def my_logout(request):
     logout(request)
+    1 + 1
     return redirect('home')
 
 
