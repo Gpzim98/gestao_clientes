@@ -22,8 +22,13 @@
                 <td>{{ venda.desconto }}</td>
                 <td>{{ venda.valor }}</td>
                 <td>
-                    <a href="{% url 'edit-item-pedido' venda.id %}">
+                    <a href="{% url 'edit-pedido' venda.id %}">
                         Editar
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'delete-pedido' venda.id %}">
+                        Excluir
                     </a>
                 </td>
             </tr>
