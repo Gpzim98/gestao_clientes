@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <h2>Listagem de vendas</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Numero</th>
+          <th scope="col">Desconto</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for venda in vendas %}
+            <tr>
+                <td>{{ venda.id }}</td>
+                <td>{{ venda.numero }}</td>
+                <td>{{ venda.desconto }}</td>
+                <td>{{ venda.valor }}</td>
+                <td>
+                    <a href="{% url 'edit-pedido' venda.id %}">
+                        Editar
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'delete-pedido' venda.id %}">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+
+<a href="{% url 'novo-pedido' %}">Nova venda</a>
+{% endblock %}

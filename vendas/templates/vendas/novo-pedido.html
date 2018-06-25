@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <h1>Novo pedido</h1>
+
+    <form method="POST" action="{% url 'novo-pedido' %}">
+        {% csrf_token %}
+        <h2>Cabecalho pedido numero: {{ venda.numero }}</h2>
+        <input type="text" name="numero" class="form-control" value="{{numero}}">
+
+        <label for="desconto">Desconto</label><br>
+        <input type="text" name="desconto" id="desconto" value="{{desconto}}"
+               placeholder="Desconto" class="form-control">
+
+        <input type="hidden" value="{{venda.id}}" name="venda_id">
+
+        <br>
+        <button type="submit" class="btn btn-main">Enviar</button>
+    </form>
+
+{% endblock %}
+
+{% block extra %}
+
+{% if venda %}
+    <form action="{% url 'novo-item-pedido' venda.id %}" method="POST">
+        {% csrf_token %}
+        {{ form_item }}
+        <button class="btn btn-info">Incluir</button>
+    </form>
+
+    <h2>Listagem de itens</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Descricao</th>
+          <th scope="col">Quantidade</th>
+          <th scope="col">Desconto</th>
+          <th scope="col">Excluir</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in itens %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.produto.descricao }}</td>
+                <td>{{ item.quantidade }}</td>
+                <td>{{ item.desconto }}</td>
+                <th scope="col">
+                    <a href="{% url 'delete-item-pedido' item.id%}">Excluir</a>
+                </th>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endif %}
+
+{% endblock %}
