@@ -2,12 +2,12 @@ boto3==1.5.36
 botocore==1.8.50
 dj-database-url==0.4.2
 dj-static==0.0.6
-Django==2.0.1
+Django==4.1
 django-bootstrap-form==3.3
 django-storages==1.6.5
 docutils==0.14
 jmespath==0.9.3
-Pillow==5.0.0
+Pillow==8.3.1
 python-dateutil==2.6.1
 python-decouple==3.1
 pytz==2017.3
